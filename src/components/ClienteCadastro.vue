@@ -46,7 +46,6 @@
         </fieldset>
       </form>
     </div>
-    {{cliente}}
   </div>
 </template>
 
