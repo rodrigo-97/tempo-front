@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <form id="contact" style="margin-top: none" action="" method="post">
+      <form id="contact" style="margin-top: none" @submit.prevent="salvar()">
         <h3>Novo cliente</h3>
         <fieldset>
           <input
@@ -20,6 +20,15 @@
             tabindex="2"
             required
             v-model="cliente.telefone"
+          />
+        </fieldset>
+        <fieldset>
+          <input
+            placeholder="Situação"
+            type="tel"
+            tabindex="2"
+            required
+            v-model="cliente.situacao"
           />
         </fieldset>
         <fieldset>
@@ -44,6 +53,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import ClienteService from "../services/clienteService"
 export default {
   computed: {
     ...mapGetters(["cliente"]),
@@ -51,13 +61,17 @@ export default {
 
   methods: {
     salvar() {
-      alert("foi");
+      ClienteService.insert(this.cliente).then(res => {
+        if (res.status === 200){
+          alert("Cliente cadastrado com sucesso!")
+          this.$router.push('/') 
+        }
+      })
+      .catch(err => {
+        alert ("erro: " + err)
+      })
     },
   },
-
-  mounted (){
-    
-  }
 };
 </script>
 
@@ -72,7 +86,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+  -font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 

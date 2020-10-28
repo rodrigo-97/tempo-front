@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <form id="contact" style="margin-top: none" action="" method="post">
-      <h3>Novo produto</h3>
+      <h3>Novo pedido</h3>
       <fieldset>
         <h5 style="display: flex; justify-content: flex-start">
           Selecione os Produtos
@@ -22,18 +22,23 @@
         <h5 style="display: flex; justify-content: flex-start">
           Selecione o Cliente
         </h5>
-        <select></select>
+        <select>
+          <option
+            v-for="cliente in clientes"
+            :key="cliente.id"
+            v-bind:value="{ id: cliente.id }"
+          ></option>
+        </select>
       </fieldset>
       <fieldset>
         <h5 style="display: flex; justify-content: flex-start">
-          Valor total: {{ valorFinal }}
+          Valor total R$ {{ valorFinal }}
         </h5>
       </fieldset>
       <fieldset>
         <button name="submit" type="submit" id="contact-submit">Enviar</button>
       </fieldset>
     </form>
-    {{ selecionados }}
   </div>
 </template>
 
@@ -41,12 +46,14 @@
 <script>
 import { mapGetters } from "vuex";
 import ProdutoService from "../services/produtoService";
+import ClienteService from "../services/clienteService";
 export default {
   data() {
     return {
       produtos: [],
       selecionados: [],
       valorFinal: "",
+      clientes: [],
     };
   },
 
@@ -57,6 +64,9 @@ export default {
   async mounted() {
     ProdutoService.list().then((res) => {
       this.produtos = res.data;
+    });
+    ClienteService.list().then((res) => {
+      this.clientes = res.data;
     });
   },
 

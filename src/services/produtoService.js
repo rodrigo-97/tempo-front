@@ -11,12 +11,12 @@ export default {
     return http.get("/listar-produtos");
   },
 
-  insert: (clan) => {
-    return http.post("/inserir-rpduto", clan);
+  insert: (produto) => {
+    return http.post("/inserir-produto", produto);
   },
 
-  update: (clan) => {
-    return http.put("/alterar-produto", clan)
+  update: (produto) => {
+    return http.put("/alterar-produto", produto)
   },
 
   remove: (id) => {

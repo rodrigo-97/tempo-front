@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="container">
-      <form id="contact" style="margin-top: none" action="" method="post">
-        <h3>Novo pedido</h3>
+      <form id="contact" style="margin-top: none" @submit.prevent="salvar()">
+        <h3>Novo produto</h3>
         <fieldset>
           <input
             placeholder="Nome do produto"
@@ -10,7 +10,7 @@
             tabindex="1"
             required
             autofocus
-            v-model="this.produto.nome"
+            v-model="produto.nome"
           />
         </fieldset>
         <fieldset>
@@ -19,7 +19,16 @@
             type="text"
             tabindex="2"
             required
-            v-model="this.produto.valor"
+            v-model="produto.valor"
+          />
+        </fieldset>
+        <fieldset>
+          <input
+            placeholder="Situação"
+            type="text"
+            tabindex="2"
+            required
+            v-model="produto.situacao"
           />
         </fieldset>
         <fieldset>
@@ -44,7 +53,16 @@ import ProdutoService from "../services/produtoService"
 export default {
   methods: {
     salvar() {
-      alert("foi");
+      console.log(this.produto)
+      ProdutoService.insert(this.produto).then(res => {
+        if (res.status === 200){
+          alert ("Produto cadastrado com sucesso!")
+        }
+        this.$router.push('/produto')
+      })
+      .catch(err => {
+        alert ("erro: " + err)
+      })
     },
   },
 

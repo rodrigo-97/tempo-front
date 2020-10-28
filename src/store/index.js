@@ -9,6 +9,7 @@ export default new Vuex.Store({
       nome: "",
       telefone: "",
       dataNascimento: "",
+      situacao: ""
     },
     pedido: {
      
