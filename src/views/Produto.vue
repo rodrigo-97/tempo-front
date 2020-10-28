@@ -15,7 +15,7 @@
 
           <div class="row" v-for="produto in produtos" :key="produto.id">
             <div class="cell" data-title="Nome">{{ produto.nome }}</div>
-            <div class="cell" data-title="Telefone">{{ produto.valor }}</div>
+            <div class="cell" data-title="Telefone">R$ {{ produto.valor }}</div>
             <div class="cell" data-title="Data de Nascimento">
               {{ produto.situacao }}
             </div>
