@@ -1,22 +1,44 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Cliente from '../views/Cliente.vue'
+import Produto from '../views/Produto.vue'
+import Pedido from '../views/Pedido.vue'
+import ClienteCadastro from '../components/ClienteCadastro.vue'
+import ProdutoCadastro from '../components/ProdutoCadastro.vue'
+import PedidoCadastro from '../components/PedidoCadastro.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'cliente',
+    component: Cliente
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/produto',
+    name: 'produto',
+    component: Produto
+  },
+  {
+    path: '/pedido',
+    name: 'pedido',
+    component: Pedido
+  },
+  {
+    path: '/cliente-cadastro',
+    name: 'cliente-cadastro',
+    component: ClienteCadastro
+  },
+  {
+    path: '/produto-cadastro',
+    name: 'produto-cadastro',
+    component: ProdutoCadastro
+  },
+  {
+    path: '/pedido-cadastro',
+    name: 'pedido-cadastro',
+    component: PedidoCadastro
   }
 ]
 
